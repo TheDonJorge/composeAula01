@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -98,7 +99,10 @@ fun Greetings(names: List<String> = List(1000 ){"$it"}) {
 fun Greeting(name: String){
     var expanded = remember  {mutableStateOf(false)}
     val extraPadding by animateDpAsState(
-        if (expanded.value) 48.dp else 0.dp
+        if (expanded.value) 48.dp else 0.dp,
+        animationSpec = tween(
+            durationMillis = 2000
+        )
     )
     Surface(color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)) {
